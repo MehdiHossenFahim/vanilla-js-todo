@@ -1,0 +1,94 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    background-color: rgb(233, 233, 233);
+
+}
+
+.gradient-background {
+    background: linear-gradient(300deg, #be3cff, #ff4cea, #ff0d0d);
+    background-size: 180% 180%;
+    animation: gradient-animation 18s ease infinite;
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* flex-direction: column; */
+
+    color: white;
+    text-align: center;
+    border-radius: 25px 25px 0 0;
+    margin: 6rem 5rem 0px;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+h1 {
+    padding: 1rem;
+    font-weight: 400;
+}
+
+#theme {
+    color: white;
+    border-radius: 25px;
+    padding: 10px;
+    border: none;
+    right: 0;
+    top: 0;
+    margin-top: 2rem;
+    position: fixed;
+}
+
+#theme:hover {
+    background: #570e9c;
+
+}
+
+h2 {
+    padding: 0.5rem;
+    font-weight: 300;
+
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    margin: 0;
+    padding: 25px;
+    width: 100vw;
+    color: white;
+    font-weight: 200;
+    text-align: center;
+}
