@@ -1,4 +1,4 @@
-
+"use strict";
 let taskList = [
     {
         "name": "Learn JavaScript",
@@ -25,7 +25,7 @@ document.querySelector("form").addEventListener("submit", function (event) {
         "completed": false
     });
 
-    console.log(taskList);
+    // console.log(taskList);
 
     generateTask(taskList);
     this.reset()
@@ -38,12 +38,13 @@ document.querySelector("form").addEventListener("submit", function (event) {
 document.querySelector('main').addEventListener('click', (event) => {
     if (event.target.classList.contains('deletebtn')) {
         const itemIndex = event.target.id;
-        console.log("Deleting index:", itemIndex);
+        // console.log("Deleting index:", itemIndex);
         taskList.splice(Number(itemIndex), 1);
 
         generateTask(taskList);
-        console.log(taskList.length);
-        console.log(taskList);
+        taskCounter();
+        // console.log(taskList.length);
+        // console.log(taskList);
 
     }
 });
@@ -55,7 +56,7 @@ document.querySelector('main').addEventListener('click', (event) => {
     if (event.target.classList.contains("completebtn")) {
         const itemIndex = Number(event.target.id);
         taskList[itemIndex].completed = true;
-        console.log(itemIndex);
+        // console.log(itemIndex);
         generateTask(taskList);
     }
 })
@@ -69,7 +70,7 @@ const radios = document.querySelectorAll('input[name="toggle-buttons"]');
 
 radios.forEach(radio => {
     radio.addEventListener('change', (event) => {
-        console.log(event.target.value);
+        // console.log(event.target.value);
         const key = event.target.value;
         switch (key) {
             case 'all':
@@ -90,10 +91,6 @@ radios.forEach(radio => {
 
     });
 });
-// ----------------------
-// ----- Task Counter ---
-// ----------------------
-
 
 
 
@@ -102,43 +99,25 @@ radios.forEach(radio => {
 // ----------------------
 
 function generateTask(taskList) {
-    const findDiv = document.querySelectorAll(".task");
-    if (findDiv) {
-        findDiv.forEach(div => div.remove());
-    }
+    document.querySelectorAll(".task").forEach(div => div.remove());
 
-    const findEmpty = document.querySelectorAll("#emptylist");
 
-    if ((taskList.length > 0) && findEmpty) {
-        findEmpty.forEach(div => div.remove());
+    document.querySelectorAll("#emptylist").forEach(div => div.remove());
 
-    } else {
-        const msg = document.createElement('div');
-        msg.className = 'tasks';
-        msg.innerHTML = "<h3>Task list is empty.</h3>";
-        msg.id = 'emptylist';
-        document.querySelector('main').appendChild(msg);
-    }
-    const completedTask = taskList.filter(task => task.completed === true);
-    const pendingTask = taskList.filter(task => task.completed === false);
+    if (taskList.length > 0) {
+        taskCounter();
+        let status = "Incomplete";
+        taskList.forEach((task, idx) => {
 
-    document.querySelector('#total').textContent = taskList.length;
-    document.querySelector('#completed').textContent = completedTask.length;
-    document.querySelector('#pending').textContent = pendingTask.length;
-
-    console.log(document.querySelector("#emptylist"));
-    let status = "Incomplete";
-    taskList.forEach((task, idx) => {
-
-        const newDiv = document.createElement('div');
-        if (task.completed) {
-            status = "Complete";
-            newDiv.className = 'task complete';
-        } else {
-            newDiv.className = 'task incomplete';
-        }
-        newDiv.id = 'taskItems'
-        newDiv.innerHTML = `<h3>Task ${idx + 1}</h3>
+            const newDiv = document.createElement('div');
+            if (task.completed) {
+                status = "Complete";
+                newDiv.className = 'task complete';
+            } else {
+                newDiv.className = 'task incomplete';
+            }
+            newDiv.id = 'taskItems'
+            newDiv.innerHTML = `<h3>Task ${idx + 1}</h3>
         <p><b>Name:</b> ${task.name}</p>
         <p><b>Subject:</b> ${task.subject}</p>
         <p><b>Priority:</b> ${task.priority}</p>
@@ -147,11 +126,55 @@ function generateTask(taskList) {
             <button name="complete" id="${idx}" class="taskbtn completebtn">Complete</button>
             <button name="delete" id="${idx}" class="taskbtn deletebtn">Delete</button>
         </div>`
-        const mainElement = document.querySelector('main');
-        mainElement.appendChild(newDiv);
-    });
+            const mainElement = document.querySelector('main');
+            mainElement.appendChild(newDiv);
+        });
+
+    } else {
+        const msg = document.createElement('div');
+        msg.className = 'tasks';
+        msg.innerHTML = "<h3>Task list is empty.</h3>";
+        msg.id = 'emptylist';
+        document.querySelector('main').appendChild(msg);
+    }
 
 }
+// ----------------------
+// ----- Task Counter ---
+// ----------------------
 
+function taskCounter() {
+    const completedTask = taskList.filter(task => task.completed === true);
+    const pendingTask = taskList.filter(task => task.completed === false);
+
+    document.querySelector('#total').textContent = taskList.length;
+    document.querySelector('#completed').textContent = completedTask.length;
+    document.querySelector('#pending').textContent = pendingTask.length;
+}
+
+function updateDateTime() {
+    const now = new Date();
+    const dateOptions = {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    };
+    const dateStr = now.toLocaleDateString('en-GB', dateOptions);
+
+    const timeOptions = {
+        hour: 'numeric',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true
+    };
+
+    const timeStr = now.toLocaleTimeString('en-GB', timeOptions);
+
+    document.querySelector('#date').textContent = dateStr;
+    document.querySelector('#time').textContent = timeStr;
+}
+
+updateDateTime();
+setInterval(updateDateTime, 1 * 1000);
 
 document.querySelector("#footerYear").textContent = year;
