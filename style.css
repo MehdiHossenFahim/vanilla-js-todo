@@ -3,7 +3,7 @@
         --card: #ffffff;
         --card2: #D9F9DF;
         --text: #111;
-        --text-light: -text-light;
+        --text-light: white;
         --border: gainsboro;
         --shadow: rgba(0, 0, 0, .3);
         --incomplete: rgb(255, 88, 88);
