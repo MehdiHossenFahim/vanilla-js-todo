@@ -79,7 +79,7 @@ Update every second using
 setInterval()
 
 <!---------------------------->
-### 8. Bonus
+### 8. Bonus✅
 Add a button
 Dark Mode
 
