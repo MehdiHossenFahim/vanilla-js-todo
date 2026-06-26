@@ -134,14 +134,16 @@ select {
     width: 100%;
     min-width: 54vw;
     max-width: 55vw;
-    color: white;
+    color: black;
+    background: white;
 
     padding: 20px;
     box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.3);
 
-    background: linear-gradient(300deg, #ff9ccd, #c37dff, #b88dff);
-    background-size: 180% 180%;
-    animation: gradient-animation 18s ease infinite;
+}
+
+.tasks h2 {
+    font-weight: 500;
 }
 
 
@@ -199,14 +201,14 @@ select {
     font-size: 1rem;
 }
 
-#completebtn:hover {
+.completebtn:hover {
     background: #2ede57;
     box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.3);
     transform: scale(1.05);
     border: none;
 }
 
-#deletebtn:hover {
+.deletebtn:hover {
     background: #ff0707;
     box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.3);
     transform: scale(1.01);
@@ -227,7 +229,7 @@ select {
         grid-template-columns: 1fr;
     }
 
-    #completebtn {
+    .completebtn {
         display: none;
     }
 

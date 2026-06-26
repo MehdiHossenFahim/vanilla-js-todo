@@ -31,7 +31,7 @@ Each task should contain:
 
 <!---------------------------->
 
-### 2. Display Tasks
+### 2. Display Tasks ✅
 Each task should show
 * Task Name
 * Subject
@@ -42,14 +42,14 @@ Each task should show
 
 <!---------------------------->
 
-### 3. Complete Task
+### 3. Complete Task ✅
 Clicking Complete
 * Changes status to Completed
 * Changes task color
 
 <!---------------------------->
 
-### 4. Delete Task
+### 4. Delete Task ✅
 Delete the selected task.
 
 <!---------------------------->
