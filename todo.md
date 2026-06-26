@@ -54,7 +54,7 @@ Delete the selected task.
 
 <!---------------------------->
 
-### 5. Filter Tasks
+### 5. Filter Tasks ✅
 Buttons
 All
 Completed
@@ -62,7 +62,7 @@ Pending
 
 <!---------------------------->
 
-### 6. Task Counter
+### 6. Task Counter ✅
 Example
 Total Tasks : 7
 Completed : 3

@@ -8,14 +8,7 @@ let taskList = [
     }
 ]
 const year = new Date().getFullYear();
-
-if (!taskList) {
-    console.log("Task List is Empty. Add Task. ")
-} else {
-    generateTask();
-}
-
-
+generateTask(taskList);
 
 
 
@@ -34,7 +27,7 @@ document.querySelector("form").addEventListener("submit", function (event) {
 
     console.log(taskList);
 
-    generateTask();
+    generateTask(taskList);
     this.reset()
 });
 
@@ -48,7 +41,7 @@ document.querySelector('main').addEventListener('click', (event) => {
         console.log("Deleting index:", itemIndex);
         taskList.splice(Number(itemIndex), 1);
 
-        generateTask();
+        generateTask(taskList);
         console.log(taskList.length);
         console.log(taskList);
 
@@ -63,16 +56,52 @@ document.querySelector('main').addEventListener('click', (event) => {
         const itemIndex = Number(event.target.id);
         taskList[itemIndex].completed = true;
         console.log(itemIndex);
-
-        generateTask();
+        generateTask(taskList);
     }
 })
+
+
+// ----------------------------------
+// -------- Filter Task -------------
+// ----------------------------------
+
+const radios = document.querySelectorAll('input[name="toggle-buttons"]');
+
+radios.forEach(radio => {
+    radio.addEventListener('change', (event) => {
+        console.log(event.target.value);
+        const key = event.target.value;
+        switch (key) {
+            case 'all':
+                generateTask(taskList);
+                break;
+            case 'completed':
+                const doneTask = taskList.filter(task => task.completed === true);
+                generateTask(doneTask);
+                break;
+            case 'pending':
+                const pendingTask = taskList.filter(task => task.completed === false);
+                generateTask(pendingTask);
+                break;
+
+            default:
+                break;
+        }
+
+    });
+});
+// ----------------------
+// ----- Task Counter ---
+// ----------------------
+
+
+
 
 // ----------------------
 // ---- Display Task ----
 // ----------------------
 
-function generateTask() {
+function generateTask(taskList) {
     const findDiv = document.querySelectorAll(".task");
     if (findDiv) {
         findDiv.forEach(div => div.remove());
@@ -90,6 +119,12 @@ function generateTask() {
         msg.id = 'emptylist';
         document.querySelector('main').appendChild(msg);
     }
+    const completedTask = taskList.filter(task => task.completed === true);
+    const pendingTask = taskList.filter(task => task.completed === false);
+
+    document.querySelector('#total').textContent = taskList.length;
+    document.querySelector('#completed').textContent = completedTask.length;
+    document.querySelector('#pending').textContent = pendingTask.length;
 
     console.log(document.querySelector("#emptylist"));
     let status = "Incomplete";
