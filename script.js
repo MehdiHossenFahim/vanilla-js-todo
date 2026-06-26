@@ -110,7 +110,7 @@ function generateTask(taskList) {
         taskList.forEach((task, idx) => {
 
             const newDiv = document.createElement('div');
-            if (task.completed) {
+            if (task.completed === true) {
                 status = "Complete";
                 newDiv.className = 'task complete';
             } else {
@@ -171,10 +171,33 @@ function updateDateTime() {
     const timeStr = now.toLocaleTimeString('en-GB', timeOptions);
 
     document.querySelector('#date').textContent = dateStr;
-    document.querySelector('#time').textContent = timeStr;
+    document.querySelector('#time').textContent = timeStr.toUpperCase();
 }
 
 updateDateTime();
 setInterval(updateDateTime, 1 * 1000);
+const themeBtn = document.getElementById("theme");
 
+//------------------------
+//---- Toggle Theme ------
+//------------------------
+
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    themeBtn.textContent = "☀️ Light";
+} else {
+    themeBtn.textContent = "🌙 Dark";
+}
+
+themeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+
+    if (document.body.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
+        themeBtn.textContent = "☀️ Light";
+    } else {
+        localStorage.setItem("theme", "light");
+        themeBtn.textContent = "🌙 Dark";
+    }
+});
 document.querySelector("#footerYear").textContent = year;
