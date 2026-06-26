@@ -16,24 +16,41 @@
 
 <body>
     <header class="gradient-background">
-        <div class="title">
-            <h1>Student Task Manager</h1>
-            <h2>To-do List</h2>
-
-        </div>
-        <button type="button" id="theme" class="gradient-background"> Change Theme</button>
-
-
+        <h1>Student Task Manager</h1>
+        <button type="button" id="theme"> 🌘Toogle</button>
     </header>
+
     <main>
         <div class="container">
-            <div>
-                <h3>Today: <span id="date">21 June 2026</span></h3>
-                <h3> <span id="time">21 June 2026</span></h3>
+            <div class="grid">
+
+                <div id="dateTime">
+                    <h3><b>Today:</b> <span id="date">21 June 2026</span></h3>
+                    <h3> <span id="time">10:30:36 AM</span></h3>
+                </div>
+
+                <form action="" method="post">
+                    <input type="text" name="title" id="title" placeholder="Task Name" required>
+
+                    <input type="text" name="subject" id="subject" placeholder="Subject" required>
+
+                    <label for="priority">Priority</label>
+                    <select id="cars" name="priority">
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+
+                    <button type="submit" class="addbtn">Add Task</button>
+                </form>
             </div>
         </div>
 
+        <div class="tasks">
+            <h2>To-do List</h2>
+        </div>
     </main>
+
     <footer class="gradient-background">
         &copy; <span id="footerYear"></span>. Mehedi Hossen Fahim.
     </footer>
