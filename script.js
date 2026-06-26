@@ -68,9 +68,6 @@ document.querySelector('main').addEventListener('click', (event) => {
     }
 })
 
-
-
-
 // ----------------------
 // ---- Display Task ----
 // ----------------------
@@ -82,8 +79,6 @@ function generateTask() {
     }
 
     const findEmpty = document.querySelectorAll("#emptylist");
-
-
 
     if ((taskList.length > 0) && findEmpty) {
         findEmpty.forEach(div => div.remove());
