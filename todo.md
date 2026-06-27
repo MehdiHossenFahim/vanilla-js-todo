@@ -92,9 +92,3 @@ priority: "High",
 completed: false
 }
 ];
-
-# Submission Requirements
-Students must submit
-● index.html
-● style.css
-● script.js
